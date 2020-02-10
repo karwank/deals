@@ -23,6 +23,10 @@ class DealStage < ApplicationRecord
   # scopes
   default_scope { order(percent: :asc) }
 
+  def total_value
+    deals.pluck(:value).sum
+  end
+
   class << self
 
     def find_or_create_by_data data = {}

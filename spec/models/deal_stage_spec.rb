@@ -77,6 +77,17 @@ RSpec.describe DealStage, type: :model do
 
   end
 
+  describe 'instance methods' do
+
+    let!(:deal1) { create(:deal, deal_stage: subject) }
+    let!(:deal2) { create(:deal, deal_stage: subject) }
+
+    it 'should calculate total value of deals by method total_value' do
+      expect(subject.total_value).to eq(deal1.value + deal2.value)
+    end
+
+  end
+
   describe 'class_methods' do
 
     let(:deals) { PipelineDeals::Deal.new.index_all }

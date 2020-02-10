@@ -1,0 +1,1 @@
+<%= react_component("DealStagesChart", { data: @deal_stages.map {|deal_stage| { percent: deal_stage.percent, name: deal_stage.name, value: deal_stage.total_value.to_f }} }) %>
