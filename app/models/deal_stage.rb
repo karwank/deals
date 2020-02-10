@@ -20,4 +20,17 @@ class DealStage < ApplicationRecord
   # associations
   has_many :deals
 
+  class << self
+
+    def find_or_create_by_data data = {}
+      if data["id"].present?
+        self.find_or_create_by(external_id: data["id"]) do |deal_stage|
+          deal_stage.name = data['name']
+          deal_stage.percent = data['percent']
+        end
+      end
+    end
+
+  end
+
 end

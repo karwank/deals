@@ -63,4 +63,27 @@ RSpec.describe Deal, type: :model do
 
   end
 
+  describe 'class_methods' do
+
+    let(:deals) { PipelineDeals::Deal.new.index_all }
+    
+    it 'should create deal from data by find_or_create_by_data' do
+      deal_data = deals.first
+      described_class.find_or_create_by_data(deal_data)
+      expect(described_class.count).to eq 1
+    end
+
+    it 'should create belongs_to association deal_stage from data by find_or_create_by_data' do
+      deal_data = deals.first
+      described_class.find_or_create_by_data(deal_data)
+      expect(DealStage.count).to eq 1
+    end
+
+    it 'should retrieve and save deals' do
+      described_class.retrieve!
+      expect(described_class.count).to eq deals.count
+    end
+
+  end
+
 end

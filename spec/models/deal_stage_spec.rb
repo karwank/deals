@@ -66,4 +66,16 @@ RSpec.describe DealStage, type: :model do
 
   end
 
+  describe 'class_methods' do
+
+    let(:deals) { PipelineDeals::Deal.new.index_all }
+    
+    it 'should create deal from data by find_or_create_by_data' do
+      deal_data = deals.first
+      described_class.find_or_create_by_data(deal_data['deal_stage'])
+      expect(described_class.count).to eq 1
+    end
+
+  end
+
 end

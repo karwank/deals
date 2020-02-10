@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'rest-client'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.2'
   gem 'rspec-rails', '4.0.0.beta3'
   gem 'faker'
+  gem 'sinatra'
 end
 
 group :development do
