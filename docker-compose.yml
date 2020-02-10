@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    container_name: deals-app
+    image: karwank/deals-ruby
+    volumes:
+      - .:/home/deploy/rails-app
+    ports:
+      - '${APP_LOCAL_PORT}:3000'
+      - '${WEBPACK_LOCAL_PORT}:3035'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - 'postgres'
+      - 'postgres-test'
+  postgres:
+    container_name: deals-postgres
+    image: 'postgres:9.6-alpine'
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+  postgres-test:
+    container_name: deals-postgres-test
+    image: 'postgres:9.6-alpine'
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}-test
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}-test
+      POSTGRES_DB: ${POSTGRES_DB}-test
+volumes:
+  postgres:
