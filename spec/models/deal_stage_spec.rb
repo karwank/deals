@@ -66,6 +66,17 @@ RSpec.describe DealStage, type: :model do
 
   end
 
+  describe 'scopes' do
+
+    it 'is ordered by percent ASC by default' do
+      deal_stage1 = create(:deal_stage, percent: 99)
+      deal_stage2 = create(:deal_stage, percent: 1)
+
+      expect(DealStage.all).to eq [deal_stage2, deal_stage1]
+    end
+
+  end
+
   describe 'class_methods' do
 
     let(:deals) { PipelineDeals::Deal.new.index_all }

@@ -20,6 +20,9 @@ class DealStage < ApplicationRecord
   # associations
   has_many :deals
 
+  # scopes
+  default_scope { order(percent: :asc) }
+
   class << self
 
     def find_or_create_by_data data = {}
